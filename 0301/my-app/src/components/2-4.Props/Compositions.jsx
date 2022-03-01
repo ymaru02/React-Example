@@ -8,6 +8,8 @@ export default function Compositions() {
   return (
     <div>
       <Welcome name="Jimmy" />
+      <Welcome name="don" />
+      <Welcome name="yun" />
     </div>
   );
 }
