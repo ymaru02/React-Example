@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+// import Input from "./3-7.HOC/Input";
+// import Button from "./3-7.HOC/Button";
+// import Memo from "./3-8.Memoization/Memo";
+// import Example from "./3-10.Context/Example";
+import Example from "./3-11.Portal/Example";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Input />
+      <Button /> */}
+      {/* <Memo /> */}
+      <Example />
     </div>
   );
 }

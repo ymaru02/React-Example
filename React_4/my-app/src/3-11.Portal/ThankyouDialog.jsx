@@ -5,7 +5,7 @@ export default function ThankyouDialog() {
   return (
     <Dialog
       title={<h1 style={{ color: "purple" }}> Thanks </h1>}
-      descriptions="It is honor to meet you!!"
+      description="It is honor to meet you!!"
       button={
         <button style={{ backgroundColor: "blue", color: "white" }}>
           close
