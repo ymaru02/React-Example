@@ -5,90 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
     <div id="root"></div>
+    <script type="text/babel">
+      function Btn({ text, onClick }) {
+        console.log(text);
+        return (
+          <button
+            onClick={onClick}
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+            }}
+          >
+            {text}
+          </button>
+        );
+      }
+
+      const MemorizedBtn = React.memo(Btn);
+
+      function App() {
+        const [value, setValue] = React.useState("Save Changes");
+        const changeValue = () => setValue("Revert Changes");
+        return (
+          <div>
+            <MemorizedBtn text={value} onClick={changeValue} />
+            <MemorizedBtn text="Continue" />
+          </div>
+        );
+      }
+      const root = document.querySelector("#root");
+
+      ReactDOM.render(<App />, root);
+    </script>
   </body>
-  <script
-    crossorigin
-    src="https://unpkg.com/react@17/umd/react.production.min.js"
-  ></script>
-  <script
-    crossorigin
-    src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
-  ></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel">
-    function MinutesToHours() {
-      const [amount, setAmount] = React.useState(0);
-      const [invert, setInvert] = React.useState(false);
-
-      const onChange = (event) => {
-        setAmount(event.target.value);
-      };
-
-      const reset = () => setAmount(0);
-      const onFlip = () => {
-        reset();
-        setInvert((current) => !current);
-      };
-
-      return (
-        <div>
-          <div>
-            <label htmlFor="minutes">Minutes</label>
-            <input
-              value={invert ? amount * 60 : amount}
-              id="minutes"
-              placeholder="Minutes"
-              type="number"
-              onChange={onChange}
-              disabled={invert}
-            />
-          </div>
-          <div>
-            <label htmlFor="hours">Hours</label>
-            <input
-              value={invert ? amount : Math.round(amount / 60)}
-              id="hours"
-              placeholder="Hours"
-              type="number"
-              onChange={onChange}
-              disabled={!invert}
-            />
-          </div>
-          <button onClick={reset}>reset</button>
-          <button onClick={onFlip}>{invert ? "Turn back" : "Invert"}</button>
-        </div>
-      );
-    }
-
-    function KmToMiles() {
-      return <h3>KM 2 M</h3>;
-    }
-    function App() {
-      const [index, setIndex] = React.useState("xx");
-
-      const onSelect = (event) => {
-        setIndex(event.target.value);
-      };
-      return (
-        <div>
-          <h1>Super Converter</h1>
-          <select value={index} onChange={onSelect}>
-            <option value="xx">Select your units</option>
-            <option value="0">MinutesToHours</option>
-            <option value="1">KmToMiles</option>
-          </select>
-          <hr />
-          {index === "xx" ? "Please select your units" : null}
-          {index === "0" ? <MinutesToHours /> : null}
-          {index === "1" ? <KmToMiles /> : null}
-        </div>
-      );
-    }
-    const root = document.getElementById("root");
-
-    ReactDOM.render(<App />, root);
-  </script>
 </html>
