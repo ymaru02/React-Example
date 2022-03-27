@@ -3,6 +3,8 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { useInput } from "./components/useInput";
 import { useTabs } from "./components/useTabs";
+import { useTitle } from "./components/useTitle";
+import { useClick } from "./components/useClick";
 
 const content = [
   {
@@ -14,10 +16,6 @@ const content = [
     content: "I'm the content of the Section 2",
   },
 ];
-
-// const useTitle = (initialTitle) => {
-//   const [title, setTitle] = use;
-// };
 
 function App() {
   const [item, setItem] = useState(0);
@@ -36,6 +34,12 @@ function App() {
     console.log("Hello");
   };
   useEffect(sayHello, []);
+
+  const titleUpdate = useTitle("Loading...");
+  setTimeout(() => titleUpdate("Home"), 5000);
+
+  const title = useClick(sayHello);
+
   return (
     <div className="App">
       <h1>Hello {item}</h1>
@@ -58,6 +62,9 @@ function App() {
       <br />
       <button onClick={() => setNumber(number + 1)}>{number}</button>
       <button onClick={() => setAnumber(anumber + 1)}>{anumber}</button>
+
+      <br />
+      <h1 ref={title}>Hi</h1>
     </div>
   );
 }
