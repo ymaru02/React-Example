@@ -17,6 +17,21 @@ const content = [
   },
 ];
 
+const usePreventLeave = () => {
+  const listener = (event) => {
+    event.preventDefault();
+    event.retrunValue = "";
+  };
+  const enablePrevent = () => {
+    window.addEventListener("beforeunload", listener);
+  };
+  const disablePrevent = () => {
+    window.addEventListener("beforeunload", listener);
+  };
+
+  return { enablePrevent, disablePrevent };
+};
+
 function App() {
   const [item, setItem] = useState(0);
   const incrementItem = () => setItem(item + 1);
@@ -40,6 +55,7 @@ function App() {
 
   const title = useClick(sayHello);
 
+  const { enablePrevent, disablePrevent } = usePreventLeave();
   return (
     <div className="App">
       <h1>Hello {item}</h1>
@@ -65,6 +81,10 @@ function App() {
 
       <br />
       <h1 ref={title}>Hi</h1>
+
+      <br />
+      <button onClick={enablePrevent}>Prevent</button>
+      <button onClick={disablePrevent}>UnPrevent</button>
     </div>
   );
 }
